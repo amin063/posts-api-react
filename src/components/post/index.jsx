@@ -12,7 +12,7 @@ function Post({ post, data, setData }) {
 
     const saveClick = () => {
         post.isSaved = !post.isSaved;
-        post.isSaved ? setSavedColor("text-green-700") : setSavedColor("text-gray-400")
+
         console.log(post);
 
         setData([...data])
@@ -21,14 +21,12 @@ function Post({ post, data, setData }) {
     const clickLike = () => {
         post.isLiked = !post.isLiked;
         post.isLiked ? ++post.reactions.likes : --post.reactions.likes;
-        post.isLiked ? setLikedColor("text-blue-700") : setLikedColor("text-gray-400")
         setData([...data])
     }
 
-    const disLikedClick = ()=>{
+    const disLikedClick = () => {
         post.isDisLiked = !post.isDisLiked;
-        post.isDisLiked ? ++post.reactions.dislikes: --post.reactions.dislikes;
-        post.isLiked ? setDisLikedColor("text-red-700") : setLikedColor("text-gray-400")
+        post.isDisLiked ? ++post.reactions.dislikes : --post.reactions.dislikes;
         setData([...data])
     }
 
@@ -47,12 +45,22 @@ function Post({ post, data, setData }) {
             <div className="stats flex space-x-10">
                 <div className="like-stats flex items-center space-x-3">
                     <p>{post.reactions.likes}</p>
-                    <FontAwesomeIcon className={`cursor-pointer  ${likedColor}`} onClick={() => clickLike()} icon={faThumbsUp} />
+                    {post.isLiked ?
+                        <FontAwesomeIcon className='cursor-pointer text-blue-700' onClick={() => clickLike()} icon={faThumbsUp} />
+                        :
+                        <FontAwesomeIcon className='cursor-pointer text-gray-400' onClick={() => clickLike()} icon={faThumbsUp} />
+                    }
+
                 </div>
 
                 <div className="dislike-stats flex items-center space-x-3">
                     <p>{post.reactions.dislikes}</p>
-                    <FontAwesomeIcon onClick={()=> disLikedClick()} className={`cursor-pointer ${dislikedColor}`} icon={faThumbsDown} />
+                    {post.isDisLiked ?
+                        <FontAwesomeIcon className='cursor-pointer text-red-700' onClick={() => disLikedClick()} icon={faThumbsDown} />
+                        :
+                        <FontAwesomeIcon className='cursor-pointer text-gray-400' onClick={() => disLikedClick()} icon={faThumbsDown} />
+
+                    }
                 </div>
 
                 <div className="view-stats flex items-center space-x-3">
@@ -61,7 +69,11 @@ function Post({ post, data, setData }) {
                 </div>
 
                 <div className="save-post">
-                    <FontAwesomeIcon className={`cursor-pointer  ${savedColor}`} onClick={() => saveClick()} icon={faBookmark} />
+                    {post.isSaved ?
+                        <FontAwesomeIcon className='cursor-pointer text-green-700' onClick={() => saveClick()} icon={faBookmark} />
+                        :
+                        <FontAwesomeIcon className='cursor-pointer text-gray-400' onClick={() => saveClick()} icon={faBookmark} />
+                    }
                 </div>
             </div>
             <hr className='border-black' />
