@@ -6,9 +6,6 @@ import { faEye } from '@fortawesome/free-regular-svg-icons'
 import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 
 function Post({ post, data, setData }) {
-    const [savedColor, setSavedColor] = useState("text-gray-400")
-    const [likedColor, setLikedColor] = useState("text-gray-400")
-    const [dislikedColor, setDisLikedColor] = useState("text-gray-400")
 
     const saveClick = () => {
         post.isSaved = !post.isSaved;
@@ -21,12 +18,16 @@ function Post({ post, data, setData }) {
     const clickLike = () => {
         post.isLiked = !post.isLiked;
         post.isLiked ? ++post.reactions.likes : --post.reactions.likes;
+        post.isDisLiked ? --post.reactions.dislikes : post.isDisLiked = false;
+        post.isDisLiked = false;
         setData([...data])
     }
 
     const disLikedClick = () => {
         post.isDisLiked = !post.isDisLiked;
         post.isDisLiked ? ++post.reactions.dislikes : --post.reactions.dislikes;
+        post.isLiked ? --post.reactions.likes : post.isLiked = false;
+        post.isLiked = false
         setData([...data])
     }
 

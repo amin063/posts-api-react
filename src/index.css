@@ -25,4 +25,8 @@ body.dark {
   hr{
     border: 1px solid white;
   }
+  select{
+    background-color: black;
+    color: white;
+  }
 }

@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className='container mx-auto w-8/12'>
-      <Header />
+      <Header data={data} setData={setData} />
       <Main data={data} setData={setData} pageIndex={pageIndex} setPageIndex={setPageIndex} />
       <Nav pageIndex={pageIndex} setPageIndex={setPageIndex} />
     </div>
