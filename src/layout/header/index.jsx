@@ -43,8 +43,9 @@ function Header({ data, setData }) {
     <div className="header flex justify-between w-full my-5">
       <div className="logo text-3xl font-bold">PostAt</div>
       <select value={option} onChange={changeOption}>
-        <option value="dislike">Most DisLiked</option>
+        <option value="">Select</option>
         <option value="like">Most Liked</option>
+        <option value="dislike">Most DisLiked</option>
         <option value="view">Most Viewed</option>
       </select>
       <div onClick={changeTheme} className="theme-icon relative rounded-full w-12 h-12 flex items-center justify-center bg-gray-200 cursor-pointer">
